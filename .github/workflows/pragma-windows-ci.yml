@@ -1,0 +1,39 @@
+name: Release Generator
+on:
+  push:
+    branches: [ main, master, actions ]
+  pull_request:
+    branches: [ main, master, actions ]
+
+concurrency:
+  group: environment-${{ github.ref }}
+  cancel-in-progress: true
+
+
+jobs:
+  build:
+    name: Build - ${{ matrix.config.os }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - os: windows-latest
+            name: "Windows x64 MSVC"
+            artifact: "Windows-MSVC.tar.xz"
+            build_type: "RelWithDebInfo"
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+            cc: "cl"
+            cxx: "cl"
+            archiver: "7z a"
+            generators: "Visual Studio 17 2022"
+            build_dir: 'build'
+    steps:
+      - uses: actions/checkout@v3.0.2
+      
+      - name: New tag text
+        shell: bash
+        run:   |
+          result=$(lua_compile.exe ./test.lua)
+          echo "Result: $result"
+          ls -R
