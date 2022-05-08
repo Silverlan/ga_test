@@ -34,6 +34,6 @@ jobs:
       - name: New tag text
         shell: bash
         run:   |
-          result=$(./lua_compile.exe $GITHUB_ENV/test.lua)
+          result=$(./lua_compile.exe ${GITHUB_WORKSPACE}/test.lua)
           echo "Result: $result"
           ls -R
