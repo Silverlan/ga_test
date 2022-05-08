@@ -34,6 +34,13 @@ jobs:
       - name: New tag text
         shell: bash
         run:   |
-          result=$(./lua_compile.exe "$PWD/test.lua")
-          echo "Result: $result"
-          ls -R
+          shopt -s globstar
+          for f in ./**/.lua; do
+            echo "FOUND: $f"
+              #touch "$f"
+          done
+
+        
+          #result=$(./lua_compile.exe "$PWD/test.lua")
+          #echo "Result: $result"
+          #ls -R
