@@ -34,9 +34,12 @@ jobs:
       - name: New tag text
         shell: bash
         run:   |
-          for filename in ./*; do
+          echo "PWD: $PWD"
+          for filename in ./*.lua; do
               echo "FILE: $filename"
+              ./lua_compile.exe "$PWD/$filename"
           done
+          ls -R
 
         
           #result=$(./lua_compile.exe "$PWD/test.lua")
