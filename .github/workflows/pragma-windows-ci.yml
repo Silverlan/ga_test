@@ -34,10 +34,8 @@ jobs:
       - name: New tag text
         shell: bash
         run:   |
-          shopt -s globstar
-          for f in ./**/.lua; do
-            echo "FOUND: $f"
-              #touch "$f"
+          for filename in ./*; do
+              echo "FILE: $filename"
           done
 
         
