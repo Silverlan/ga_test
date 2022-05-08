@@ -34,6 +34,6 @@ jobs:
       - name: New tag text
         shell: bash
         run:   |
-          result=$(./lua_compile.exe ./test.lua)
+          result=$(./lua_compile.exe $(pwd)/test.lua)
           echo "Result: $result"
           ls -R
