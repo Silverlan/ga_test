@@ -37,13 +37,8 @@ jobs:
           echo "PWD: $PWD"
           shopt -s globstar
           for f in ./lua/*.lua /tmp/*.doc ./lua/**/*.lua ; do
-            echo "F: $f"
-          done
-
-
-          for filename in ./lua/**/.lua; do
-              echo "FILE: $filename"
-              ./lua_compile.exe "$PWD/$filename"
+            echo "Compiling file: $f"
+            ./lua_compile.exe "$PWD/$f"
           done
           ls -R
 
