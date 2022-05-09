@@ -90,6 +90,7 @@ jobs:
               then
                 echo "Copy $f to ./addons/vr_player/$f"
                 DIR="$(dirname "${f}")" ;
+                echo "MKDIR $DIR"
                 mkdir -p "$DIR"
                 cp "$f" "./addons/vr_player/$f"
               fi
