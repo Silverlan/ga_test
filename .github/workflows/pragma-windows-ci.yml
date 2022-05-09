@@ -89,7 +89,9 @@ jobs:
               if [[ -f $f ]]
               then
                 echo "Copy $f to ./addons/vr_player/$f"
-                rsync $f "./addons/vr_player/$f"
+                DIR="$(dirname "${f}")" ;
+                mkdir -p "$DIR"
+                cp "$f" "./addons/vr_player/$f"
               fi
           done
           ls -R
