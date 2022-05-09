@@ -31,6 +31,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.2
       
+      - name: Install zip
+        shell: bash
+        run:   |
+          # choco install zip
+          sudo apt-get install zip
       
       - name: Test file
         shell: bash
