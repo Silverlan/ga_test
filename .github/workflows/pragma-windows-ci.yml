@@ -31,6 +31,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.2
       
+      
+      - name: Test file
+        shell: bash
+        run:   |
+          curDate=$(date -u '+%Y-%m-%d %H:%M:%S %Z')
+          printf "Test" > tag_text.txt
+    
+      - name: Test zip
+        shell: bash
+        run:   |
+          ls -R
+          zip ./pragma.zip tag_text.txt
+      
+      
+      
+      
+      
+      
+      
+      
       - name: New tag text
         shell: bash
         run:   |
@@ -41,6 +61,7 @@ jobs:
               then
                 echo "Compiling file: $f"
                 ./lua_compile.exe "$PWD/$f"
+                zip -ur ./pragma.zip $f
               fi
           done
           ls -R
