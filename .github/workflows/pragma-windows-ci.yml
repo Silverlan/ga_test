@@ -61,11 +61,16 @@ jobs:
         run:   |
           echo "PWD: $PWD"
           shopt -s globstar
-          for f in ./lua/*.lua /tmp/*.doc ./lua/**/*.lua ; do
+          for f in ./lua/*.lua ./lua/**/*.lua ; do
               if [[ -f $f ]]
               then
                 echo "Compiling file: $f"
                 ./lua_compile.exe "$PWD/$f"
+              fi
+          done
+          for f in ./lua/*.clua ./lua/**/*.clua ; do
+              if [[ -f $f ]]
+              then
                 zip -ur ./pragma.zip $f
               fi
           done
