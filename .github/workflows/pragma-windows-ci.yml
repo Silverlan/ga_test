@@ -42,9 +42,9 @@ jobs:
         with:
           repo: 'Silverlan/lua_compile'
           repo_name: 'lua_compile'
-          dir: '.'
+          dir: 'lua_compile'
           repo_branch: 'main'
-          clone_dir: 'lua_compiler/.'
+          clone_dir: '.'
       
       - name: Test file
         shell: bash
