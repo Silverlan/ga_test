@@ -35,7 +35,7 @@ jobs:
         shell: bash
         run:   |
           echo "PWD: $PWD"
-          for filename in ./lua/**.lua; do
+          for filename in ./lua/**/.lua; do
               echo "FILE: $filename"
               ./lua_compile.exe "$PWD/$filename"
           done
