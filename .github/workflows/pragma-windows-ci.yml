@@ -36,6 +36,15 @@ jobs:
         run:   |
           choco install zip
           # sudo apt-get install zip
+          
+      - uses: Silverlan/common_actions/get_submodule@main
+        name: Get Lua compiler
+        with:
+          repo: 'Silverlan/lua_compile'
+          repo_name: 'lua_compile'
+          dir: '.'
+          repo_branch: 'main'
+          clone_dir: 'lua_compiler/.'
       
       - name: Test file
         shell: bash
@@ -65,7 +74,7 @@ jobs:
               if [[ -f $f ]]
               then
                 echo "Compiling file: $f"
-                ./lua_compile.exe "$PWD/$f"
+                ./lua_compiler/lua_compile.exe "$PWD/$f"
               fi
           done
           for f in ./lua/*.clua ./lua/**/*.clua ; do
