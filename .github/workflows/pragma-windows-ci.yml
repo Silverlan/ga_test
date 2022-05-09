@@ -65,7 +65,7 @@ jobs:
       
       
       
-      - name: New tag text
+      - name: New tag text 1
         shell: bash
         run:   |
           echo "PWD: $PWD"
@@ -77,13 +77,28 @@ jobs:
                 ./lua_compiler/lua_compile.exe "$PWD/$f"
               fi
           done
+          ls -R
+          
+
+      - name: New tag text 2
+        shell: bash
+        run:   |
+          echo "PWD: $PWD"
+          shopt -s globstar
           for f in ./lua/*.clua ./lua/**/*.clua ; do
               if [[ -f $f ]]
               then
-                zip -ur ./pragma.zip $f
+                echo "Copy $f to ./addons/vr_player/$f"
+                rsync $f "./addons/vr_player/$f"
               fi
           done
           ls -R
+          
+
+      - name: New tag text 3
+        shell: bash
+        run:   |
+          zip -ur ./pragma.zip "./addons"
           
       - name: New tag text
         shell: bash
