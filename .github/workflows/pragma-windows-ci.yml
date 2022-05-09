@@ -42,7 +42,7 @@ jobs:
         with:
           repo: 'Silverlan/lua_compile'
           repo_name: 'lua_compile'
-          dir: 'lua_compile'
+          dir: 'lua_compiler'
           repo_branch: 'main'
           clone_dir: '.'
       
