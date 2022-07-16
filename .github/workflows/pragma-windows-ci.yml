@@ -34,7 +34,7 @@ jobs:
       - name: Powershell list files (2)
         shell: pwsh
         run: |
-          $colItems = (Get-ChildItem -path $startFolder -recurse | Where-Object {$_.PSIsContainer -eq $True} | Sort-Object)
+          $colItems = (Get-ChildItem -path '.' $startFolder -recurse | Where-Object {$_.PSIsContainer -eq $True} | Sort-Object)
           foreach ($i in $colItems)
               {
                   $child = Get-ChildItem $i.FullName
