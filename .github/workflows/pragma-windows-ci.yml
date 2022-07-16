@@ -31,8 +31,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.2
       
-      - name: Test zip
-        shell: bash
-        run:   |
-          wmic logicaldisk
+      - name: Powershell list files (2)
+        shell: pwsh
+        run: |
+          $colItems = (Get-ChildItem $startFolder -recurse -ErrorAction SilentlyContinue | Where-Object {$_.PSIsContainer -eq $True} | Sort-Object)
+          foreach ($i in $colItems)
+              {
+                  $subFolderItems = (Get-ChildItem $i.FullName | Measure-Object -property length -sum)
+                  $size = $subFolderItems.sum / 1MB
+                  if ($size -gt 50)
+                  {
+                      $i.FullName + " -- " + "{0:N2}" -f $size + " MB"
+                  }
+              }
       
