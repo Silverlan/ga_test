@@ -37,7 +37,7 @@ jobs:
           $colItems = (Get-ChildItem $startFolder -recurse -ErrorAction SilentlyContinue | Where-Object {$_.PSIsContainer -eq $True} | Sort-Object)
           foreach ($i in $colItems)
               {
-                  $subFolderItems = (Get-ChildItem $i.FullName | Measure-Object -property length -sum)
+                  $subFolderItems = (Get-ChildItem $i.FullName | Measure-Object -property length -sum -ErrorAction SilentlyContinue)
                   $size = $subFolderItems.sum / 1MB
                   if ($size -gt 50)
                   {
