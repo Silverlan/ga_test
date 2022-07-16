@@ -34,9 +34,10 @@ jobs:
       - name: Powershell list files (2)
         shell: pwsh
         run: |
-          cd ${GITHUB_WORKSPACE}
+          echo "Cur: $(pwd)"
+          cd $(pwd)
           Get-ChildItem -Recurse
-          $colItems = (Get-ChildItem -path ${GITHUB_WORKSPACE} $startFolder -recurse | Where-Object {$_.PSIsContainer -eq $True} | Sort-Object)
+          $colItems = (Get-ChildItem -path $(pwd) $startFolder -recurse | Where-Object {$_.PSIsContainer -eq $True} | Sort-Object)
           foreach ($i in $colItems)
               {
                   $child = Get-ChildItem $i.FullName
